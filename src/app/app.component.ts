@@ -7,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'go-angular-app';
+  title = 'go-angular-app-sanket';
   constructor(private hw: HelloWorldService){}
 
-  OnInit(){
-    // this.hw.helloWorld().subscribe(resp => this.title = resp.toString());
-    this.title = 'sanket';
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnInit(){
+    // alert('Init funtion');
+    this.hw.helloWorld().subscribe((resp: any) => {
+      this.title = resp.title;
+      console.log(this.title);
+    });
   }
 }

@@ -13,6 +13,7 @@ export class HelloWorldService {
   constructor(private http: HttpClient) {
     this.header.append('Content-Type', 'application/json');
     this.header.append('Accept', 'application/json');
+    // this.header.append('Access-Control-Allow-Origin', 'http://localhost:4200');
   }
 
   private extractData(res: Response): any {
@@ -20,9 +21,9 @@ export class HelloWorldService {
     return body || { };
   }
 
-  helloWorld() {
+  helloWorld(): Observable<any>{
 
-    return this.http.get(endpoint ).pipe(
+    return this.http.get(endpoint, {headers: this.header} ).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );
