@@ -5,11 +5,12 @@ import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
-const endpoint = 'http://localhost:8080';
+const endpoint = 'http://localhost:8080/';
 @Injectable({
   providedIn: 'root'
 })
-export class HelloWorldService {
+export class UserService {
+
   private header = new HttpHeaders();
   constructor(private http: HttpClient, private utils: Utils) {
     utils.setHeaders(this.header);
@@ -20,9 +21,17 @@ export class HelloWorldService {
     return body || { };
   }
 
-  helloWorld(): Observable<any>{
+  getAllUsers(): Observable<any>{
 
-    return this.http.get(endpoint, {headers: this.header} ).pipe(
+    return this.http.get(endpoint + 'users', {headers: this.header} ).pipe(
+      map(this.extractData),
+      catchError(this.handleError)
+    );
+  }
+
+  getUser(name: string): Observable<any>{
+
+    return this.http.get(endpoint + 'users/' + name, {headers: this.header} ).pipe(
       map(this.extractData),
       catchError(this.handleError)
     );

@@ -1,3 +1,4 @@
+import { Utils } from './utils/util.service';
 import { HelloWorldService } from './service/hello-world.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,7 +19,8 @@ import { UserComponent } from './user/user.component';
     HttpClientModule,
   ],
   providers: [
-    HelloWorldService
+    HelloWorldService,
+    Utils
   ],
   bootstrap: [AppComponent]
 })
