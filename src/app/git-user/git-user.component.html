@@ -1,0 +1,12 @@
+<p>git-user works!</p>
+<div *ngIf='gitUser!=null'>
+<p>{{ gitUser.login }}</p>
+<p>{{ gitUser.avatar_url }}</p>
+
+<img
+    width="40"
+    alt="{{ gitUser.login }}"
+    src="{{ gitUser.avatar_url }}"
+  />
+
+</div>
